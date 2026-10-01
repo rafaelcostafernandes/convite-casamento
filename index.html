@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Casamento de Rafael & Nayara</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TELA DE ABERTURA -->
+  <div id="intro-screen" class="intro-screen">
+    <div class="intro-content">
+      <p class="sub-intro">Você foi convidado para o casamento de</p>
+      <h1 class="names-intro">Rafael & Nayara</h1>
+      <button id="btn-entrar" class="btn-primary">Abrir Convite</button>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO DO CONVITE -->
+  <main id="main-content" class="main-content hidden">
+    <div class="card">
+      <p class="tagline">Com a bênção de Deus e de seus pais</p>
+      
+      <h1 class="couple-names">Rafael <br><span>&</span><br> Nayara</h1>
+
+      <div class="verse-box">
+        <p class="verse-text">
+          "Deus mudou o teu caminho até juntares com o meu e guardou a tua vida separando-a para mim. Para onde fores, irei; onde tu repousares, repousarei."
+        </p>
+        <span class="verse-ref">RUTE 1:16-18</span>
+      </div>
+
+      <div class="divider">◆</div>
+
+      <div class="date-box">
+        <div class="day-name">SÁBADO</div>
+        <div class="date-number">14</div>
+        <div class="month-year">NOVEMBRO • 2026</div>
+      </div>
+
+      <div class="info-group">
+        <h2>Cerimônia & Recepção</h2>
+        <p class="time">Às 18:00 horas</p>
+        
+        <a href="https://maps.app.goo.gl/qZPBxSzprKAzJcaE9" target="_blank" class="btn-location">
+          📍 Ver Localização no Google Maps
+        </a>
+      </div>
+
+      <div class="divider">◆</div>
+
+      <!-- FORMULÁRIO DE CONFIRMAÇÃO AUTOMATIZADO -->
+      <section class="rsvp-section">
+        <h2>Confirmação de Presença</h2>
+        <p class="rsvp-desc">Por favor, confirme sua presença até 20/10/2026</p>
+
+        <form id="rsvp-form" class="rsvp-form">
+          <div class="input-group">
+            <label for="guest-name">Nome Completo</label>
+            <input type="text" id="guest-name" name="nome" placeholder="Digite seu nome" required>
+          </div>
+
+          <div class="input-group">
+            <label for="guest-count">Quantidade de Pessoas</label>
+            <select id="guest-count" name="acompanhantes" required>
+              <option value="1">Apenas eu (1 pessoa)</option>
+              <option value="2">2 pessoas</option>
+              <option value="3">3 pessoas</option>
+              <option value="4">4 pessoas</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="guest-notes">Observações / Recado aos Noivos</label>
+            <textarea id="guest-notes" name="mensagem" rows="3" placeholder="Deixe um recado carinhoso (opcional)"></textarea>
+          </div>
+
+          <button type="submit" id="btn-submit" class="btn-primary full-width">
+            Confirmar Minha Presença
+          </button>
+        </form>
+
+        <div id="rsvp-message" class="rsvp-message hidden">
+          ✓ Presença confirmada com sucesso! Mal podemos esperar para comemorar com você.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
