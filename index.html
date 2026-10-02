@@ -457,7 +457,16 @@
             data_envio: new Date().toLocaleString('pt-BR')
           };
 
+          // Cole aqui o seu endpoint do SheetDB quando tiver
           const SHEETDB_URL = 'https://sheetdb.io/api/v1/8o7i2namh1rmh';
+
+          if (SHEETDB_URL.includes('8o7i2namh1rmh')) {
+            setTimeout(() => {
+              rsvpForm.classList.add('hidden');
+              rsvpMessage.classList.remove('hidden');
+            }, 800);
+            return;
+          }
 
           fetch(SHEETDB_URL, {
             method: 'POST',
