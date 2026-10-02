@@ -42,28 +42,29 @@
       background: var(--c-brown-dark);
       font-family: var(--font-sans);
       color: var(--c-sand);
+      overflow-x: hidden;
     }
 
-    /* Tela de Entrada */
+    /* Tela de Entrada com Animação */
     .intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  background: var(--bg-gradient);
-  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
-}
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      background: var(--bg-gradient);
+      transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
+    }
 
     .intro-screen.hide-intro {
-  opacity: 0;
-  transform: scale(1.05); /* Ligeiro zoom out ao sumir */
-  visibility: hidden;
-  pointer-events: none;
-}
+      opacity: 0;
+      transform: scale(1.05);
+      visibility: hidden;
+      pointer-events: none;
+    }
 
     .sub-intro {
       font-size: 0.85rem;
@@ -108,26 +109,32 @@
       width: 100%;
     }
 
-    /* Conteúdo Principal */
+    /* Conteúdo Principal com Animação */
     .main-content {
-  width: 100%;
-  min-height: 100vh;
-  padding: 25px 15px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: var(--bg-gradient);
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s; /* Ligeiro atraso para sincronizar */
-}
+      width: 100%;
+      min-height: 100vh;
+      padding: 25px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: var(--bg-gradient);
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
 
-    .main-content.hidden {
-  display: flex !important; /* Mantém no fluxo para animar */
-  opacity: 0;
-  transform: scale(0.92); /* Surge num efeito de crescimento elegante */
-  pointer-events: none;
-}
+    /* Estado oculto antes de revelar (Sem bloquear o botão) */
+    .main-content.hidden-content {
+      opacity: 0;
+      transform: scale(0.92);
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
 
     .card {
       width: 100%;
@@ -339,7 +346,7 @@
   </div>
 
   <!-- CONTEÚDO DO CONVITE -->
-  <main id="main-content" class="main-content hidden">
+  <main id="main-content" class="main-content hidden-content">
     <div class="card">
       <p class="tagline">Com a bênção de Deus e de seus pais</p>
       
@@ -417,32 +424,19 @@
       const rsvpForm = document.getElementById('rsvp-form');
       const rsvpMessage = document.getElementById('rsvp-message');
 
-      // Transição suave ao clicar em Abrir
-if (btnEntrar) {
-  btnEntrar.addEventListener('click', () => {
-    // Tenta acionar tela cheia no celular
-    try {
-      const docEl = document.documentElement;
-      if (docEl.requestFullscreen) {
-        docEl.requestFullscreen().catch(() => {});
-      } else if (docEl.webkitRequestFullscreen) {
-        docEl.webkitRequestFullscreen();
-      }
-    } catch (e) {}
+      if (btnEntrar) {
+        btnEntrar.addEventListener('click', () => {
+          try {
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+              docEl.requestFullscreen().catch(() => {});
+            } else if (docEl.webkitRequestFullscreen) {
+              docEl.webkitRequestFullscreen();
+            }
+          } catch (e) {}
 
-    // Inicia a animação de saída da capa
-    introScreen.classList.add('hide-intro');
-
-    // Revela o convite com transição suave
-    setTimeout(() => {
-      mainContent.classList.remove('hidden');
-    }, 100);
-  });
-}
-
-          // Mostra o convite
-          mainContent.classList.remove('hidden');
           introScreen.classList.add('hide-intro');
+          mainContent.classList.remove('hidden-content');
         });
       }
 
@@ -463,16 +457,7 @@ if (btnEntrar) {
             data_envio: new Date().toLocaleString('pt-BR')
           };
 
-          // Cole aqui o seu endpoint do SheetDB quando tiver
           const SHEETDB_URL = 'https://sheetdb.io/api/v1/8o7i2namh1rmh';
-
-          if (SHEETDB_URL.includes('8o7i2namh1rmh')) {
-            setTimeout(() => {
-              rsvpForm.classList.add('hidden');
-              rsvpMessage.classList.remove('hidden');
-            }, 800);
-            return;
-          }
 
           fetch(SHEETDB_URL, {
             method: 'POST',
