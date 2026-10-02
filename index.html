@@ -123,7 +123,7 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    /* Estado oculto antes de revelar (Sem bloquear o botão) */
+    /* Estado oculto antes de revelar */
     .main-content.hidden-content {
       opacity: 0;
       transform: scale(0.92);
@@ -440,7 +440,7 @@
         });
       }
 
-      // Confirmação RSVP
+      // Confirmação RSVP enviando para o Google Apps Script
       if (rsvpForm) {
         rsvpForm.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -457,30 +457,24 @@
             data_envio: new Date().toLocaleString('pt-BR')
           };
 
-          // Cole aqui o seu endpoint do SheetDB quando tiver
-          const SHEETDB_URL = 'https://sheetdb.io/api/v1/wnpgjjqjuxu53';
+          const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzytvx4aY3Pe9ha-l0iD8kNFqg3XmzoSNpHrSrWaKjUoCarBJze8CCZkN87LXTH9TiIZw/exec';
 
-          if (SHEETDB_URL.includes('wnpgjjqjuxu53')) {
-            setTimeout(() => {
-              rsvpForm.classList.add('hidden');
-              rsvpMessage.classList.remove('hidden');
-            }, 800);
-            return;
-          }
-
-          fetch(SHEETDB_URL, {
+          fetch(SCRIPT_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data: [data] })
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
           })
-          .then(response => response.json())
           .then(() => {
+            // Com no-cors a resposta fica opaca, então assumimos o envio com sucesso
             rsvpForm.classList.add('hidden');
             rsvpMessage.classList.remove('hidden');
           })
           .catch(error => {
             console.error('Erro ao enviar:', error);
-            alert('Houve um erro ao enviar sua confirmação.');
+            alert('Houve um erro ao enviar sua confirmação. Tente novamente.');
             btnSubmit.innerText = 'Confirmar Minha Presença';
             btnSubmit.disabled = false;
           });
