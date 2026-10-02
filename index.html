@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -11,20 +11,19 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Paleta da Imagem */
-      --c-sand: #CDA592;
-      --c-terracotta-light: #BE8352;
-      --c-terracotta: #925A42;
-      --c-brown-medium: #6B412C;
-      --c-brown-dark: #41261E;
+      /* Nova Paleta Clara com Detalhes em Marrom */
+      --bg-cream: #F9F7F2;
+      --card-bg: #FFFFFF;
+      --c-brown-dark: #3A2B27;
+      --c-brown-medium: #6E534B;
+      --c-brown-light: #9A7B70;
+      --c-border: #E8E2D7;
+      --c-gold-accent: #B29368;
 
-      --bg-gradient: linear-gradient(135deg, #2b1712 0%, #41261E 50%, #1c0e0a 100%);
-      --card-bg: rgba(65, 38, 30, 0.85);
-      
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Montserrat', sans-serif;
     }
@@ -39,13 +38,13 @@
     html, body {
       width: 100%;
       height: 100%;
-      background: var(--c-brown-dark);
+      background: var(--bg-cream);
       font-family: var(--font-sans);
-      color: var(--c-sand);
+      color: var(--c-brown-dark);
       overflow-x: hidden;
     }
 
-    /* Tela de Entrada com Animação */
+    /* Tela de Abertura */
     .intro-screen {
       position: fixed;
       inset: 0;
@@ -55,7 +54,7 @@
       align-items: center;
       text-align: center;
       padding: 20px;
-      background: var(--bg-gradient);
+      background: var(--bg-cream);
       transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
     }
 
@@ -67,66 +66,64 @@
     }
 
     .sub-intro {
-      font-size: 0.85rem;
-      letter-spacing: 2px;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--c-sand);
-      opacity: 0.8;
-      margin-bottom: 12px;
+      color: var(--c-brown-medium);
+      margin-bottom: 15px;
     }
 
     .names-intro {
       font-family: var(--font-serif);
-      font-size: 2.5rem;
-      color: var(--c-sand);
+      font-size: 2.8rem;
+      color: var(--c-brown-dark);
       margin-bottom: 35px;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     /* Botões */
     .btn-primary {
-      background: var(--c-terracotta-light);
-      border: none;
-      color: var(--c-brown-dark);
-      padding: 14px 32px;
+      background: var(--c-brown-dark);
+      border: 1px solid var(--c-brown-dark);
+      color: var(--bg-cream);
+      padding: 14px 36px;
       font-family: var(--font-sans);
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 500;
       letter-spacing: 2px;
       text-transform: uppercase;
-      border-radius: 50px;
+      border-radius: 4px;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      box-shadow: 0 4px 15px rgba(58, 43, 39, 0.1);
+      transition: all 0.3s ease;
     }
 
     .btn-primary:active {
-      transform: scale(0.97);
-      background: var(--c-sand);
+      transform: scale(0.98);
+      background: var(--c-brown-medium);
     }
 
     .full-width {
       width: 100%;
     }
 
-    /* Conteúdo Principal com Animação */
+    /* Conteúdo Principal */
     .main-content {
       width: 100%;
       min-height: 100vh;
-      padding: 25px 15px;
+      padding: 30px 15px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      background: var(--bg-gradient);
+      background: var(--bg-cream);
       opacity: 1;
       transform: scale(1);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    /* Estado oculto antes de revelar */
     .main-content.hidden-content {
       opacity: 0;
-      transform: scale(0.92);
+      transform: scale(0.95);
       pointer-events: none;
       position: absolute;
       top: 0;
@@ -138,14 +135,13 @@
 
     .card {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       background: var(--card-bg);
-      border: 1px solid rgba(205, 165, 146, 0.25);
-      border-radius: 16px;
-      padding: 35px 22px;
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      padding: 40px 25px;
       text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
       margin-bottom: 30px;
     }
 
@@ -153,38 +149,59 @@
       font-size: 0.75rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--c-sand);
-      opacity: 0.85;
-      margin-bottom: 15px;
+      color: var(--c-brown-medium);
+      margin-bottom: 20px;
     }
 
     .couple-names {
       font-family: var(--font-serif);
-      font-size: 3rem;
+      font-size: 3.2rem;
       line-height: 1.1;
-      color: var(--c-sand);
+      color: var(--c-brown-dark);
       font-weight: 400;
     }
 
     .couple-names span {
-      font-size: 1.8rem;
-      color: var(--c-terracotta-light);
+      font-size: 2rem;
+      color: var(--c-gold-accent);
       font-style: italic;
+    }
+
+    /* História / O Casal */
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--c-brown-dark);
+      margin: 30px 0 10px 0;
+      font-weight: 400;
+    }
+
+    .story-box {
+      margin: 20px 0;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--c-brown-medium);
+      text-align: center;
+    }
+
+    .story-box p {
+      margin-bottom: 14px;
     }
 
     /* Versículo */
     .verse-box {
-      margin: 25px 0 15px 0;
-      padding: 0 10px;
+      margin: 25px 0;
+      padding: 20px 15px;
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
     }
 
     .verse-text {
       font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-style: italic;
-      line-height: 1.5;
-      color: var(--c-sand);
-      opacity: 0.95;
+      line-height: 1.6;
+      color: var(--c-brown-dark);
     }
 
     .verse-ref {
@@ -192,108 +209,105 @@
       margin-top: 10px;
       font-size: 0.7rem;
       letter-spacing: 2px;
-      color: var(--c-terracotta-light);
+      color: var(--c-brown-light);
       font-weight: 600;
     }
 
-    .divider {
-      color: var(--c-terracotta-light);
-      font-size: 0.8rem;
+    /* Grade de Detalhes (Inspirado na Referência) */
+    .details-grid {
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
       margin: 25px 0;
-      opacity: 0.6;
+      overflow: hidden;
+      text-align: left;
     }
 
-    .date-box {
-      border-top: 1px solid rgba(205, 165, 146, 0.2);
-      border-bottom: 1px solid rgba(205, 165, 146, 0.2);
-      padding: 18px 0;
-      margin-bottom: 25px;
+    .details-item {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--c-border);
+      background: #FAFAFA;
     }
 
-    .day-name {
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      color: var(--c-terracotta-light);
+    .details-item:last-child {
+      border-bottom: none;
     }
 
-    .date-number {
-      font-family: var(--font-serif);
-      font-size: 3.8rem;
-      color: var(--c-sand);
-      line-height: 1;
-      margin: 4px 0;
-    }
-
-    .month-year {
-      font-size: 0.8rem;
+    .details-label {
+      font-size: 0.7rem;
       letter-spacing: 2px;
-      color: var(--c-sand);
-      opacity: 0.8;
+      text-transform: uppercase;
+      color: var(--c-gold-accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .info-group h2 {
+    .details-value {
       font-family: var(--font-serif);
-      font-size: 1.5rem;
-      color: var(--c-sand);
-      font-weight: 400;
-      margin-bottom: 5px;
+      font-size: 1.3rem;
+      color: var(--c-brown-dark);
     }
 
-    .info-group .time {
-      font-size: 0.9rem;
-      color: var(--c-terracotta-light);
-      margin-bottom: 20px;
+    .details-sub {
+      font-size: 0.8rem;
+      color: var(--c-brown-medium);
+      margin-top: 2px;
     }
 
     .btn-location {
       display: inline-block;
+      margin-top: 20px;
       background: transparent;
-      border: 1px solid var(--c-terracotta-light);
-      color: var(--c-sand);
-      padding: 12px 20px;
-      border-radius: 8px;
+      border: 1px solid var(--c-brown-medium);
+      color: var(--c-brown-dark);
+      padding: 12px 24px;
+      border-radius: 4px;
       text-decoration: none;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 1px;
+      text-transform: uppercase;
       transition: all 0.2s ease;
     }
 
     .btn-location:active {
-      background: rgba(190, 131, 82, 0.2);
+      background: var(--c-border);
     }
 
-    /* Formulário RSVP */
+    /* Form RSVP */
     .rsvp-section {
       text-align: left;
-      margin-top: 10px;
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--c-border);
     }
 
     .rsvp-section h2 {
       font-family: var(--font-serif);
-      font-size: 1.6rem;
-      color: var(--c-sand);
+      font-size: 1.8rem;
+      color: var(--c-brown-dark);
       text-align: center;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .rsvp-desc {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       text-align: center;
-      color: var(--c-sand);
-      opacity: 0.75;
-      margin-bottom: 20px;
+      color: var(--c-brown-medium);
+      line-height: 1.5;
+      margin-bottom: 25px;
     }
 
     .input-group {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .input-group label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--c-sand);
+      color: var(--c-brown-medium);
       margin-bottom: 6px;
     }
 
@@ -302,10 +316,10 @@
     .input-group textarea {
       width: 100%;
       padding: 12px;
-      background: rgba(28, 14, 10, 0.6);
-      border: 1px solid rgba(205, 165, 146, 0.3);
-      border-radius: 8px;
-      color: var(--c-sand);
+      background: #FFFFFF;
+      border: 1px solid var(--c-border);
+      border-radius: 4px;
+      color: var(--c-brown-dark);
       font-family: var(--font-sans);
       font-size: 0.9rem;
       outline: none;
@@ -314,19 +328,19 @@
     .input-group input:focus,
     .input-group select:focus,
     .input-group textarea:focus {
-      border-color: var(--c-terracotta-light);
+      border-color: var(--c-brown-dark);
     }
 
     .rsvp-message {
       margin-top: 20px;
-      padding: 15px;
-      background: rgba(146, 90, 66, 0.3);
-      border: 1px solid var(--c-terracotta-light);
-      border-radius: 8px;
-      color: var(--c-sand);
+      padding: 16px;
+      background: #F4EFEA;
+      border: 1px solid var(--c-border);
+      border-radius: 4px;
+      color: var(--c-brown-dark);
       font-size: 0.85rem;
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .hidden {
@@ -339,7 +353,7 @@
   <!-- TELA DE ABERTURA -->
   <div id="intro-screen" class="intro-screen">
     <div class="intro-content">
-      <p class="sub-intro">Você foi convidado para o casamento de</p>
+      <p class="sub-intro">Você é nosso convidado para o casamento de</p>
       <h1 class="names-intro">Rafael & Nayara</h1>
       <button id="btn-entrar" class="btn-primary">Abrir Convite</button>
     </div>
@@ -348,7 +362,7 @@
   <!-- CONTEÚDO DO CONVITE -->
   <main id="main-content" class="main-content hidden-content">
     <div class="card">
-      <p class="tagline">Com a bênção de Deus e de seus pais</p>
+      <p class="tagline">Com a bênção de Deus e de nossos pais</p>
       
       <h1 class="couple-names">Rafael <br><span>&</span><br> Nayara</h1>
 
@@ -359,34 +373,41 @@
         <span class="verse-ref">RUTE 1:16-18</span>
       </div>
 
-      <div class="divider">◆</div>
-
-      <div class="date-box">
-        <div class="day-name">SÁBADO</div>
-        <div class="date-number">14</div>
-        <div class="month-year">NOVEMBRO • 2026</div>
+      <!-- SEÇÃO O CASAL -->
+      <h2 class="section-title">O Casal</h2>
+      <div class="story-box">
+        <p>
+          Histórias de amor costumam começar com um encontro, mas a nossa sempre pareceu escrita em pequenos detalhes: no cuidado de cada gesto, no sorriso que acalma e no abraço que faz o mundo parar por um instante.
+        </p>
+        <p>
+          Entre sonhos, desafios e conquistas, aprendemos que amar também é construir: dia após dia, com paciência, parceria e fé.
+        </p>
       </div>
 
-      <div class="info-group">
-        <h2>Cerimônia & Recepção</h2>
-        <p class="time">Às 18:00 horas</p>
-        
-        <a href="https://maps.app.goo.gl/qZPBxSzprKAzJcaE9" target="_blank" class="btn-location">
-          📍 Ver Localização no Google Maps
-        </a>
+      <!-- DETALHES DO EVENTO -->
+      <div class="details-grid">
+        <div class="details-item">
+          <div class="details-label">♡ Cerimônia & Recepção</div>
+          <div class="details-value">Sábado, 14 de Novembro de 2026</div>
+          <div class="details-sub">Às 18:00 horas</div>
+        </div>
       </div>
 
-      <div class="divider">◆</div>
+      <a href="https://maps.app.goo.gl/qZPBxSzprKAzJcaE9" target="_blank" class="btn-location">
+        📍 Ver Localização no Google Maps
+      </a>
 
-      <!-- FORMULÁRIO DE CONFIRMAÇÃO AUTOMATIZADO -->
+      <!-- FORMULÁRIO RSVP -->
       <section class="rsvp-section">
         <h2>Confirmação de Presença</h2>
-        <p class="rsvp-desc">Por favor, confirme sua presença até 20/10/2026</p>
+        <p class="rsvp-desc">
+          Sua presença será muito especial para nós. Pedimos que confirme até 20/10/2026 para organizarmos todos os detalhes deste dia com carinho.
+        </p>
 
         <form id="rsvp-form" class="rsvp-form">
           <div class="input-group">
             <label for="guest-name">Nome Completo</label>
-            <input type="text" id="guest-name" name="nome" placeholder="Digite seu nome" required>
+            <input type="text" id="guest-name" name="nome" placeholder="Digite seu nome completo" required>
           </div>
 
           <div class="input-group">
@@ -457,7 +478,7 @@
           params.append('mensagem', formData.get('mensagem'));
           params.append('data_envio', new Date().toLocaleString('pt-BR'));
 
-          const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYMORz80jHvImarV7_NB9gGa0HVopW2erWk8DpFTqWEraMb1lT3Ml1dgGzXNnNpWqAtw/exec';
+          const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzytvx4aY3Pe9ha-l0iD8kNFqg3XmzoSNpHrSrWaKjUoCarBJze8CCZkN87LXTH9TiIZw/exec';
 
           fetch(SCRIPT_URL, {
             method: 'POST',
