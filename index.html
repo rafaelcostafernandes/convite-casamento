@@ -440,7 +440,7 @@
         });
       }
 
-      // Confirmação RSVP enviando para o Google Apps Script
+      // Confirmação RSVP
       if (rsvpForm) {
         rsvpForm.addEventListener('submit', (e) => {
           e.preventDefault();
@@ -450,12 +450,12 @@
           btnSubmit.disabled = true;
 
           const formData = new FormData(rsvpForm);
-          const data = {
-            nome: formData.get('nome'),
-            acompanhantes: formData.get('acompanhantes'),
-            mensagem: formData.get('mensagem'),
-            data_envio: new Date().toLocaleString('pt-BR')
-          };
+          
+          const params = new URLSearchParams();
+          params.append('nome', formData.get('nome'));
+          params.append('acompanhantes', formData.get('acompanhantes'));
+          params.append('mensagem', formData.get('mensagem'));
+          params.append('data_envio', new Date().toLocaleString('pt-BR'));
 
           const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzytvx4aY3Pe9ha-l0iD8kNFqg3XmzoSNpHrSrWaKjUoCarBJze8CCZkN87LXTH9TiIZw/exec';
 
@@ -463,12 +463,11 @@
             method: 'POST',
             mode: 'no-cors',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify(data)
+            body: params.toString()
           })
           .then(() => {
-            // Com no-cors a resposta fica opaca, então assumimos o envio com sucesso
             rsvpForm.classList.add('hidden');
             rsvpMessage.classList.remove('hidden');
           })
