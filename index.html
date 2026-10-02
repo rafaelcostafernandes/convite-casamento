@@ -12,8 +12,313 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="script.js"></script>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      /* Paleta da Imagem */
+      --c-sand: #CDA592;
+      --c-terracotta-light: #BE8352;
+      --c-terracotta: #925A42;
+      --c-brown-medium: #6B412C;
+      --c-brown-dark: #41261E;
+
+      --bg-gradient: linear-gradient(135deg, #2b1712 0%, #41261E 50%, #1c0e0a 100%);
+      --card-bg: rgba(65, 38, 30, 0.85);
+      
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--c-brown-dark);
+      font-family: var(--font-sans);
+      color: var(--c-sand);
+    }
+
+    /* Tela de Entrada */
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      background: var(--bg-gradient);
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .intro-screen.hide-intro {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .sub-intro {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--c-sand);
+      opacity: 0.8;
+      margin-bottom: 12px;
+    }
+
+    .names-intro {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--c-sand);
+      margin-bottom: 35px;
+      font-weight: 400;
+    }
+
+    /* Botões */
+    .btn-primary {
+      background: var(--c-terracotta-light);
+      border: none;
+      color: var(--c-brown-dark);
+      padding: 14px 32px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.97);
+      background: var(--c-sand);
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    /* Conteúdo Principal */
+    .main-content {
+      width: 100%;
+      min-height: 100vh;
+      padding: 25px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: var(--bg-gradient);
+    }
+
+    .main-content.hidden {
+      display: none;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      border: 1px solid rgba(205, 165, 146, 0.25);
+      border-radius: 16px;
+      padding: 35px 22px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      margin-bottom: 30px;
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--c-sand);
+      opacity: 0.85;
+      margin-bottom: 15px;
+    }
+
+    .couple-names {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      line-height: 1.1;
+      color: var(--c-sand);
+      font-weight: 400;
+    }
+
+    .couple-names span {
+      font-size: 1.8rem;
+      color: var(--c-terracotta-light);
+      font-style: italic;
+    }
+
+    /* Versículo */
+    .verse-box {
+      margin: 25px 0 15px 0;
+      padding: 0 10px;
+    }
+
+    .verse-text {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--c-sand);
+      opacity: 0.95;
+    }
+
+    .verse-ref {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--c-terracotta-light);
+      font-weight: 600;
+    }
+
+    .divider {
+      color: var(--c-terracotta-light);
+      font-size: 0.8rem;
+      margin: 25px 0;
+      opacity: 0.6;
+    }
+
+    .date-box {
+      border-top: 1px solid rgba(205, 165, 146, 0.2);
+      border-bottom: 1px solid rgba(205, 165, 146, 0.2);
+      padding: 18px 0;
+      margin-bottom: 25px;
+    }
+
+    .day-name {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: var(--c-terracotta-light);
+    }
+
+    .date-number {
+      font-family: var(--font-serif);
+      font-size: 3.8rem;
+      color: var(--c-sand);
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .month-year {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--c-sand);
+      opacity: 0.8;
+    }
+
+    .info-group h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--c-sand);
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .info-group .time {
+      font-size: 0.9rem;
+      color: var(--c-terracotta-light);
+      margin-bottom: 20px;
+    }
+
+    .btn-location {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--c-terracotta-light);
+      color: var(--c-sand);
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-location:active {
+      background: rgba(190, 131, 82, 0.2);
+    }
+
+    /* Formulário RSVP */
+    .rsvp-section {
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .rsvp-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--c-sand);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .rsvp-desc {
+      font-size: 0.75rem;
+      text-align: center;
+      color: var(--c-sand);
+      opacity: 0.75;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--c-sand);
+      margin-bottom: 6px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: rgba(28, 14, 10, 0.6);
+      border: 1px solid rgba(205, 165, 146, 0.3);
+      border-radius: 8px;
+      color: var(--c-sand);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      border-color: var(--c-terracotta-light);
+    }
+
+    .rsvp-message {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(146, 90, 66, 0.3);
+      border: 1px solid var(--c-terracotta-light);
+      border-radius: 8px;
+      color: var(--c-sand);
+      font-size: 0.85rem;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -97,6 +402,80 @@
     </div>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnEntrar = document.getElementById('btn-entrar');
+      const introScreen = document.getElementById('intro-screen');
+      const mainContent = document.getElementById('main-content');
+      const rsvpForm = document.getElementById('rsvp-form');
+      const rsvpMessage = document.getElementById('rsvp-message');
+
+      // Transição ao clicar em Abrir
+      if (btnEntrar) {
+        btnEntrar.addEventListener('click', () => {
+          // Tenta acionar tela cheia no celular
+          try {
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+              docEl.requestFullscreen().catch(() => {});
+            } else if (docEl.webkitRequestFullscreen) {
+              docEl.webkitRequestFullscreen();
+            }
+          } catch (e) {}
+
+          // Mostra o convite
+          mainContent.classList.remove('hidden');
+          introScreen.classList.add('hide-intro');
+        });
+      }
+
+      // Confirmação RSVP
+      if (rsvpForm) {
+        rsvpForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const btnSubmit = document.getElementById('btn-submit');
+          btnSubmit.innerText = 'Enviando...';
+          btnSubmit.disabled = true;
+
+          const formData = new FormData(rsvpForm);
+          const data = {
+            nome: formData.get('nome'),
+            acompanhantes: formData.get('acompanhantes'),
+            mensagem: formData.get('mensagem'),
+            data_envio: new Date().toLocaleString('pt-BR')
+          };
+
+          // Cole aqui o seu endpoint do SheetDB quando tiver
+          const SHEETDB_URL = 'https://sheetdb.io/api/v1/SUA_CHAVE_AQUI';
+
+          if (SHEETDB_URL.includes('SUA_CHAVE_AQUI')) {
+            setTimeout(() => {
+              rsvpForm.classList.add('hidden');
+              rsvpMessage.classList.remove('hidden');
+            }, 800);
+            return;
+          }
+
+          fetch(SHEETDB_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+          })
+          .then(response => response.json())
+          .then(() => {
+            rsvpForm.classList.add('hidden');
+            rsvpMessage.classList.remove('hidden');
+          })
+          .catch(error => {
+            console.error('Erro ao enviar:', error);
+            alert('Houve um erro ao enviar sua confirmação.');
+            btnSubmit.innerText = 'Confirmar Minha Presença';
+            btnSubmit.disabled = false;
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
